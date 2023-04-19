@@ -40,7 +40,7 @@ def to_grayscale(pil_image: np.ndarray) -> np.ndarray:
     # print(y.shape)
 
     # save the image
-    # mplimg.imsave('decorators_with_at.jpg', np.uint8(y[0]), cmap=cm.gray)
+    mplimg.imsave('decorators_with_at.jpg', np.uint8(y[0]), cmap=cm.gray)
 
     return y
 

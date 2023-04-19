@@ -38,8 +38,7 @@ def validate_images(input_dir: str, output_dir: str, log_file: str, formatter: s
                 check_4 = False
 
                 # check the couler scale
-
-                if im.mode == "RGB" and im.size[0] < 100 and im.size[1] < 100:
+                if im.mode != "RGB" and (im.size[0] < 100 or im.size[1] < 100):
                     check_4 = True
 
                 # Varianz variante

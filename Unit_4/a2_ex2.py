@@ -37,15 +37,14 @@ def prepare_image(image: np.ndarray, x: int, y: int, width: int, height: int, si
             mean = np.mean(image[0, x_i:x_i+size-kor_x, y_i:y_i+size-kor_y])
             pixelated_image[0, x_i:x_i+size-kor_x, y_i:y_i+size-kor_y] = mean
 
-
     # generate the known array
     known_array = np.where(image == pixelated_image, True, False)
 
     # Für test mit 'prepare_image(gray_im, 100, 100, 5, 5, 2)'
-    #print("pixelated = \n", pixelated_image[0, 98:107, 98:107])
-    #print("original = \n", image[0, 98:107, 98:107])
-    #print("map = \n", known_array[0, 98:107, 98:107])
-    #print("target_array =\n", target_array)
+    # print("pixelated = \n", pixelated_image[0, 98:107, 98:107])
+    # print("original = \n", image[0, 98:107, 98:107])
+    # print("map = \n", known_array[0, 98:107, 98:107])
+    # print("target_array =\n", target_array)
     mplimg.imsave('pixeled.jpg', np.uint8(pixelated_image[0]), cmap=cm.gray)
     return (pixelated_image, known_array, target_array)
 

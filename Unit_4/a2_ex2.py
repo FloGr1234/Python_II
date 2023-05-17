@@ -54,4 +54,4 @@ if __name__ == "__main__":
     with Image.open(imag_path) as im:
         print(im.size)
         gray_im = to_grayscale(np.array(im))
-    print(prepare_image(gray_im, 100, 300, 100, 1, 2))
+    print(prepare_image(gray_im, 100, 300, 100, 100, 6))

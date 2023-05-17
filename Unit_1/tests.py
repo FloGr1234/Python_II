@@ -1,7 +1,10 @@
 import numpy as np
 import os
-
+import glob
 if __name__ == "__main__":
+
+    print(sorted(glob.glob(os.getcwd() + "\\**\\*.jpg", recursive=True)))
+    """
     print(os.path.abspath(("TestOut1/0101.jpg")))
     print(os.path.exists("TestOut/001.jpg"))
     print("hallo world")
@@ -14,3 +17,4 @@ if __name__ == "__main__":
 
     D = np.where(A == C, True, False)
     print(D)
+    """

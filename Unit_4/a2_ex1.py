@@ -7,10 +7,10 @@ from matplotlib import cm
 def to_grayscale(pil_image: np.ndarray) -> np.ndarray:
     # check if the shape of the pil_image is valid
     if len(pil_image.shape) == 2:
-        return pil_image[None]
+        return pil_image[None]  # image is already in grayscale
     elif len(pil_image.shape) < 2 or len(pil_image.shape) > 3:
         raise ValueError(f"{len(pil_image.shape)} is a wrong Shape.")
-    elif pil_image.shape[2] != 3:  # len(pil_image.shape) == 3 and
+    elif pil_image.shape[2] != 3:  # check the colour size
         raise ValueError(f"{pil_image.shape[2]} is an invalid colour size")
 
     # calculate the grayscale

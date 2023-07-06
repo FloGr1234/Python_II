@@ -10,7 +10,6 @@ class ImageDataset(torch.utils.data.Dataset):
     def __init__(self, image_dir):
         image_dir = os.path.abspath(image_dir)
         self.image_path_list = sorted(glob.glob(image_dir + "\\**\\*.jpg", recursive=True))
-        #  sorted([os.path.abspath(image) for image in image_list])
 
     def __getitem__(self, index: int):
         im = Image.open(self.image_path_list[index])

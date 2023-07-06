@@ -97,7 +97,7 @@ def main(
     # training_set_eval = RotatedImages(dataset=training_set, rotation_angle=45)
     # validation_set = RotatedImages(dataset=validation_set, rotation_angle=45)
     # test_set = RotatedImages(dataset=test_set, rotation_angle=45)
-    train_loader = torch.utils.data.DataLoader(training_set, batch_size=8, shuffle=True, num_workers=0)
+    train_loader = torch.utils.data.DataLoader(training_set, batch_size=2, shuffle=True, num_workers=0)
     val_loader = torch.utils.data.DataLoader(validation_set, batch_size=1, shuffle=False, num_workers=0)
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=1, shuffle=False, num_workers=0)
 
@@ -121,8 +121,8 @@ def main(
     optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate, weight_decay=weight_decay)
 
     write_stats_at = 50000000  # Write status to TensorBoard every x updates
-    plot_at = 100  # Plot every x updates
-    validate_at = 5000  # Evaluate model on validation set and check for new best model every x updates
+    plot_at = 1000  # Plot every x updates
+    validate_at = 2000  # Evaluate model on validation set and check for new best model every x updates
     update = 0  # Current update counter
     best_validation_loss = np.inf  # Best validation loss so far
     update_progress_bar = tqdm(total=n_updates, desc=f"loss: {np.nan:7.5f}", position=0)
@@ -146,10 +146,10 @@ def main(
             outputs = net(inputs)
 
             # Calculate loss, do backward pass and update weights
-            if True:  # (update < 1 / 10 * n_updates) or (update > 2 / 3 * n_updates):
-                loss = mse(outputs, targets)
-            else:
-                loss = mse(outputs[~known_arr], targets[~known_arr])
+            #if True:  # (update < 1 / 10 * n_updates) or (update > 2 / 3 * n_updates):
+            loss = mse(outputs, targets)
+            #else:
+             #   loss = mse(outputs[~known_arr], targets[~known_arr])
             loss.backward()
             optimizer.step()
 
@@ -210,4 +210,4 @@ def main(
 
 
 if __name__ == "__main__":
-    main("results", learning_rate=1e-3, weight_decay=1e-5, n_updates=300)
+    main("results", learning_rate=1e-3, weight_decay=1e-5, n_updates=10000)

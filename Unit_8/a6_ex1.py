@@ -7,6 +7,7 @@ from matplotlib import pyplot as plt
 from typing import Union, Sequence
 from torchvision import transforms
 
+
 def random_augmented_image(
     image: Image,
     image_size: Union[int, Sequence[int]],
@@ -16,7 +17,6 @@ def random_augmented_image(
     torch.random.manual_seed(seed)
 
     # 2 random of this 4 things
-
     idx = []
     while len(idx) < 2:
         rand_int = int(torch.rand(1).item()*4)
@@ -39,19 +39,10 @@ def random_augmented_image(
         rand_transforms[idx[0]],
         rand_transforms[idx[1]],
         transforms.ToTensor(),  # Transform a PIL or numpy array to a tensor
-        torch.nn.Dropout(p=0.02, inplace=False)
+        torch.nn.Dropout(p=0.06, inplace=False)
     ])
     transformed_image = transform_chain(image)
     return transformed_image
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
